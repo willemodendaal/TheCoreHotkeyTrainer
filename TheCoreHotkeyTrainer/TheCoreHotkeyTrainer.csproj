@@ -42,14 +42,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Layouts\IKeyboardLayout.cs" />
+    <Compile Include="Layouts\KeyboardLayoutFactory.cs" />
     <Compile Include="Layouts\KeyCombination.cs" />
-    <Compile Include="Layouts\RandomRightyMedium.cs" />
+    <Compile Include="Layouts\KayboardLayoutBase.cs" />
+    <Compile Include="Layouts\Righty\Medium\ProtossRightyMedium.cs" />
+    <Compile Include="Layouts\Righty\Medium\RandomRightyMedium.cs" />
+    <Compile Include="Layouts\Righty\Medium\TerranRightyMedium.cs" />
+    <Compile Include="Layouts\Righty\Medium\ZergRightyMedium.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Score.cs" />
+    <Compile Include="UserInputGatherer.cs" />
+    <Compile Include="UserLayoutSelector.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -4,58 +4,46 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TheCoreHotkeyTrainer.Layouts;
+using TheCoreHotkeyTrainer.Layouts.Righty.Medium;
 
 namespace TheCoreHotkeyTrainer
 {
 	internal class Program
 	{
+		private static readonly UserLayoutSelector _userLayoutSelector;
+		private static UserInputGatherer _inputGatherer;
+		private static Score _score;
 
-		private static void Main(string[] args)
+		static Program()
+		{
+			_userLayoutSelector = new UserLayoutSelector();
+			_score = new Score();
+		}
+
+		private static void Main()
 		{
 			OutputIntroText();
 
-			Console.TreatControlCAsInput = true;
 			ConsoleKeyInfo pressedKey;
 
-			IKeyboardLayout keyboardLayout = GetKeyboardLayout();
+			IKeyboardLayout keyboardLayout = _userLayoutSelector.GetUserChosenKeyboardLayout();
+			Console.TreatControlCAsInput = true;
+			_inputGatherer = new UserInputGatherer(_score, keyboardLayout);
 
 			do
 			{
-				KeyCombination randomCombination = keyboardLayout.GetRandomKeyCombination();
-				Output(randomCombination.ToString());
-
-				pressedKey = Console.ReadKey(true);
-
-				if (KeyPressMatches(pressedKey, randomCombination))
-					Output(".");
-				else
-					Output("*** Fail. You pressed " + new KeyCombination(pressedKey) + "\n\n" );
-
+				pressedKey = _inputGatherer.GetSingleUserInput();
 			} while (pressedKey.Key != ConsoleKey.Escape);
+
+			Console.WriteLine("\nWell done! Here are your results:");
+			Console.WriteLine(_score.GetScoreSummaryString());
+			Console.ReadKey();
 		}
 
 		private static void OutputIntroText()
 		{
-			Output("TheCore HotKey Trainer");
-			Output("----------------------");
-			Output("This first version only supports the RRM layout.");
-			Output("Press <escape> to exit.");
-		}
-
-		private static bool KeyPressMatches(ConsoleKeyInfo pressedKey, KeyCombination randomCombination)
-		{
-			return pressedKey.Key == randomCombination.Key
-			       && pressedKey.Modifiers == randomCombination.AltCtrlShiftKeysPressed;
-		}
-
-		private static IKeyboardLayout GetKeyboardLayout()
-		{
-			return new RandomRightyMedium();
-		}
-
-		private static void Output(string msg)
-		{
-			Console.WriteLine(msg);
+			Console.WriteLine("TheCore HotKey Trainer");
+			Console.WriteLine("\tPress <escape> to exit.");
 		}
 	}
 }

@@ -1,18 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace TheCoreHotkeyTrainer.Layouts
+namespace TheCoreHotkeyTrainer.Layouts.Righty.Medium
 {
-	internal class RandomRightyMedium : IKeyboardLayout
+	internal class RandomRightyMedium : KayboardLayoutBase, IKeyboardLayout
 	{
-		public string ShortCode { get; private set; }
-		public string DisplayName { get; private set; }
-		public IList<KeyCombination> SupportedKeyCombinations { get; private set; }
-		
-
 		public RandomRightyMedium()
 		{
 			ShortCode = "RRM";
@@ -45,13 +37,6 @@ namespace TheCoreHotkeyTrainer.Layouts
 				new KeyCombination(ConsoleKey.P, ConsoleModifiers.Shift | ConsoleModifiers.Control),
 
 			};
-		}
-
-
-		public KeyCombination GetRandomKeyCombination()
-		{
-			int randomIndex = new Random().Next(SupportedKeyCombinations.Count - 1);
-			return SupportedKeyCombinations[randomIndex];
 		}
 	}
 }
