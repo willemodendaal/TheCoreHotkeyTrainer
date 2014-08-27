@@ -19,30 +19,30 @@ namespace TheCoreHotkeyTrainer.Layouts
 			DisplayName = "Random Righty Medium";
 			SupportedKeyCombinations = new List<KeyCombination>
 			{
-				new KeyCombination('j'),
-				new KeyCombination('i'),
-				new KeyCombination('o'),
-				new KeyCombination('p'),
+				new KeyCombination(ConsoleKey.J),
+				new KeyCombination(ConsoleKey.I),
+				new KeyCombination(ConsoleKey.O),
+				new KeyCombination(ConsoleKey.P),
 
-				new KeyCombination('j', ConsoleModifiers.Alt),
-				new KeyCombination('i', ConsoleModifiers.Alt),
-				new KeyCombination('o', ConsoleModifiers.Alt),
-				new KeyCombination('p', ConsoleModifiers.Alt),
+				new KeyCombination(ConsoleKey.J, ConsoleModifiers.Alt),
+				new KeyCombination(ConsoleKey.I, ConsoleModifiers.Alt),
+				new KeyCombination(ConsoleKey.O, ConsoleModifiers.Alt),
+				new KeyCombination(ConsoleKey.P, ConsoleModifiers.Alt),
 
-				new KeyCombination('j', ConsoleModifiers.Control),
-				new KeyCombination('i', ConsoleModifiers.Control),
-				new KeyCombination('o', ConsoleModifiers.Control),
-				new KeyCombination('p', ConsoleModifiers.Control),
+				new KeyCombination(ConsoleKey.J, ConsoleModifiers.Control),
+				new KeyCombination(ConsoleKey.I, ConsoleModifiers.Control),
+				new KeyCombination(ConsoleKey.O, ConsoleModifiers.Control),
+				new KeyCombination(ConsoleKey.P, ConsoleModifiers.Control),
 
-				new KeyCombination('j', ConsoleModifiers.Shift),
-				new KeyCombination('i', ConsoleModifiers.Shift),
-				new KeyCombination('o', ConsoleModifiers.Shift),
-				new KeyCombination('p', ConsoleModifiers.Shift),
+				new KeyCombination(ConsoleKey.J, ConsoleModifiers.Shift),
+				new KeyCombination(ConsoleKey.I, ConsoleModifiers.Shift),
+				new KeyCombination(ConsoleKey.O, ConsoleModifiers.Shift),
+				new KeyCombination(ConsoleKey.P, ConsoleModifiers.Shift),
 
-				new KeyCombination('j', ConsoleModifiers.Shift | ConsoleModifiers.Control),
-				new KeyCombination('i', ConsoleModifiers.Shift | ConsoleModifiers.Control),
-				new KeyCombination('o', ConsoleModifiers.Shift | ConsoleModifiers.Control),
-				new KeyCombination('p', ConsoleModifiers.Shift | ConsoleModifiers.Control),
+				new KeyCombination(ConsoleKey.J, ConsoleModifiers.Shift | ConsoleModifiers.Control),
+				new KeyCombination(ConsoleKey.I, ConsoleModifiers.Shift | ConsoleModifiers.Control),
+				new KeyCombination(ConsoleKey.O, ConsoleModifiers.Shift | ConsoleModifiers.Control),
+				new KeyCombination(ConsoleKey.P, ConsoleModifiers.Shift | ConsoleModifiers.Control),
 
 			};
 		}

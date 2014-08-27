@@ -9,15 +9,6 @@ namespace TheCoreHotkeyTrainer
 {
 	internal class Program
 	{
-		//private static void Main()
-		//{
-		//	var pressed = Console.ReadKey(true);
-		//	int keyCharNr = (int) pressed.KeyChar;
-		//	char castChar = (char) (keyCharNr + 64);
-		//	Console.WriteLine("Cast char:" + castChar );
-		//	Console.ReadKey();
-		//}
-
 
 		private static void Main(string[] args)
 		{
@@ -31,38 +22,29 @@ namespace TheCoreHotkeyTrainer
 			do
 			{
 				KeyCombination randomCombination = keyboardLayout.GetRandomKeyCombination();
-				Out(randomCombination.ToString());
+				Output(randomCombination.ToString());
 
 				pressedKey = Console.ReadKey(true);
 
 				if (KeyPressMatches(pressedKey, randomCombination))
-					Out("Correct!");
+					Output(".");
 				else
-					Out("Fail. You pressed " + GetKeyCombinationString(pressedKey));
+					Output("*** Fail. You pressed " + new KeyCombination(pressedKey) + "\n\n" );
 
 			} while (pressedKey.Key != ConsoleKey.Escape);
 		}
 
-		private static string GetKeyCombinationString(ConsoleKeyInfo pressedKey)
-		{
-			if (pressedKey.Modifiers == 0)
-				return pressedKey.Key.ToString();
-
-			return pressedKey.Modifiers.ToString().Replace(", ", " + ")
-				+ " + " + pressedKey.Key;
-		}
-
 		private static void OutputIntroText()
 		{
-			Out("TheCore HotKey Trainer");
-			Out("----------------------");
-			Out("This first version only supports the RRM layout.");
-			Out("Press <escape> to exit.");
+			Output("TheCore HotKey Trainer");
+			Output("----------------------");
+			Output("This first version only supports the RRM layout.");
+			Output("Press <escape> to exit.");
 		}
 
 		private static bool KeyPressMatches(ConsoleKeyInfo pressedKey, KeyCombination randomCombination)
 		{
-			return pressedKey.Key.ToString().ToUpper() == char.ToUpperInvariant(randomCombination.Key).ToString()
+			return pressedKey.Key == randomCombination.Key
 			       && pressedKey.Modifiers == randomCombination.AltCtrlShiftKeysPressed;
 		}
 
@@ -71,7 +53,7 @@ namespace TheCoreHotkeyTrainer
 			return new RandomRightyMedium();
 		}
 
-		private static void Out(string msg)
+		private static void Output(string msg)
 		{
 			Console.WriteLine(msg);
 		}
