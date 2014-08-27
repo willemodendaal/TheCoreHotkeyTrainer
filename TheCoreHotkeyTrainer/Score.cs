@@ -19,13 +19,10 @@ namespace TheCoreHotkeyTrainer
 
 		public string GetScoreSummaryString()
 		{
-			string timespanFormatted = TimeSpan.FromMilliseconds(TotalWaitTimeMilliseconds).ToString(@"hh\:mm\:ss");
-
-			return string.Format("Correct: {0}\nIncorrect: {1}\nAvg Response(ms): {2}\nPractice time: {3}", 
+			return string.Format("Correct: {0}\nIncorrect: {1}\nAvg Response(ms): {2}", 
 					CorrectCount, 
 					IncorrectCount, 
-					AvgWaitTimePerKeyMilliseconds, 
-					timespanFormatted);
+					AvgWaitTimePerKeyMilliseconds);
 		}
 
 		public void RecordSuccess(DateTime timeBeforeKeyPress, DateTime timeAfterKeyPress)

@@ -7,6 +7,8 @@ namespace TheCoreHotkeyTrainer
 	{
 		private Score _score;
 		private readonly IKeyboardLayout _keyboardLayout;
+		private const int TrainingPromptPosition = 12;
+		private const int ErrorPromptPosition = 13;
 
 		public UserInputGatherer(Score score, IKeyboardLayout keyboardLayout)
 		{
@@ -17,23 +19,53 @@ namespace TheCoreHotkeyTrainer
 		public ConsoleKeyInfo GetSingleUserInput()
 		{
 			KeyCombination randomCombination = _keyboardLayout.GetRandomKeyCombination();
-			Console.WriteLine(randomCombination.ToString());
+			OutputOnTrainingPromptRow(randomCombination);
 
 			DateTime timeBeforeKeyPress = DateTime.Now;
 			ConsoleKeyInfo pressedKey = Console.ReadKey(true);
+			ClearErrorRow();
 			DateTime timeAfterKeyPress = DateTime.Now;
 
 			if (KeyPressMatches(pressedKey, randomCombination))
 			{
 				_score.RecordSuccess(timeBeforeKeyPress, timeAfterKeyPress);
 			}
+			else if (pressedKey.Key == ConsoleKey.Escape)
+			{
+				// Do nothing, this is ok.
+			}
 			else
 			{
 				_score.RecordFailure(timeBeforeKeyPress, timeAfterKeyPress);
-				Console.WriteLine("*** Fail. You pressed " + new KeyCombination(pressedKey) + "\n\n");
+				OutputOnErrorRow(pressedKey);
 			}
 			return pressedKey;
 		}
+
+		private void ClearErrorRow()
+		{
+			Console.SetCursorPosition(0, ErrorPromptPosition);
+			Console.WriteLine("                                                ");
+		}
+
+		private static void OutputOnTrainingPromptRow(KeyCombination randomCombination)
+		{
+			Console.ForegroundColor = ConsoleColor.White;
+			Console.SetCursorPosition(0, TrainingPromptPosition); 
+			Console.WriteLine("\t" + randomCombination + "                       ");
+
+			Console.ResetColor();
+		}
+
+		private static void OutputOnErrorRow(ConsoleKeyInfo pressedKey)
+		{
+			Console.ForegroundColor = ConsoleColor.DarkRed;
+			Console.SetCursorPosition(0, ErrorPromptPosition); 
+			Console.WriteLine("\t* Oops. You pressed " + new KeyCombination(pressedKey) + "         ");
+
+			Console.ResetColor();
+		}
+
 
 		private static bool KeyPressMatches(ConsoleKeyInfo pressedKey, KeyCombination randomCombination)
 		{

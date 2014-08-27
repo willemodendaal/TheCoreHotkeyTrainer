@@ -28,15 +28,18 @@ namespace TheCoreHotkeyTrainer
 
 			IKeyboardLayout keyboardLayout = _userLayoutSelector.GetUserChosenKeyboardLayout();
 			Console.TreatControlCAsInput = true;
-			_inputGatherer = new UserInputGatherer(_score, keyboardLayout);
-
+			_inputGatherer =
+			 new UserInputGatherer(_score, keyboardLayout);
+			DateTime startTime = DateTime.Now;
 			do
 			{
 				pressedKey = _inputGatherer.GetSingleUserInput();
 			} while (pressedKey.Key != ConsoleKey.Escape);
+			DateTime endTime = DateTime.Now;
 
 			Console.WriteLine("\nWell done! Here are your results:");
 			Console.WriteLine(_score.GetScoreSummaryString());
+			Console.WriteLine("Time practiced: " + (endTime - startTime).ToString(@"hh\:mm\:ss"));
 			Console.ReadKey();
 		}
 

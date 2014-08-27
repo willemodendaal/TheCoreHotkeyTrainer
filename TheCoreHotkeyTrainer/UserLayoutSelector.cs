@@ -25,7 +25,9 @@ namespace TheCoreHotkeyTrainer
 					Console.WriteLine("That code is invalid, please try again...");
 			}
 
+			Console.Clear();
 			Console.WriteLine("\nYou chose " + chosenLayout.ShortCode + ". Let's begin...\n");
+			Console.WriteLine("Press the key combination shown below.  (or press <Esc> to exit)");
 
 			return chosenLayout;
 		}
@@ -36,8 +38,10 @@ namespace TheCoreHotkeyTrainer
 			Console.WriteLine("Please type the 3-letter code for the layout you would like to train for:");
 			foreach (var layout in _layoutFactory.AllLayouts)
 			{
-				Console.WriteLine("\t" + layout.ShortCode + " - " + layout.DisplayName);
+				Console.WriteLine("  " + layout.ShortCode + ":  " + layout.DisplayName);
 			}
+
+			Console.Write("> ");
 		}
 	}
 }
